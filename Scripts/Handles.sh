@@ -43,7 +43,9 @@ if [ -d *"luci-app-aurora-config"* ]; then
 
 	cd ./luci-app-aurora-config/
 
-	sed -i "s/nav_submenu_type '.*'/nav_submenu_type 'boxed-dropdown'/g" $(find ./root/ -type f -name "*aurora")
+	# sed -i "s/nav_submenu_type '.*'/nav_submenu_type 'boxed-dropdown'/g" $(find ./root/ -type f -name "*aurora")
+	sed -i "s/nav_submenu_type '.*'/nav_submenu_type 'boxed-dropdown'/g" $(find ./root/ -type f -name "*template")
+	sed -i 's/so.default = "mega-menu"/so.default = "boxed-dropdown"/g' $(find ./ -type f -name "*theme.js")
 
 	cd $PKG_PATH && echo "theme-aurora has been fixed!"
 fi
