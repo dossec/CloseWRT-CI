@@ -33,6 +33,25 @@ if [[ "${WRT_THEME}" == "aurora" ]]; then
 	echo "CONFIG_PACKAGE_luci-app-$WRT_THEME-config=y" >> ./.config
 fi
 
+#argon configure
+[ -d "package/base-files/files/etc/uci-defaults" ] && cat > ./package/base-files/files/etc/uci-defaults/99-set-argon<<'EOF'
+#!/bin/sh
+
+cat > /etc/config/argon <<'CONF'
+
+config global
+    option primary '#31a1a1'
+    option dark_primary '#483d8b'
+    option blur '0'
+    option blur_dark '0'
+    option transparency '0.3'
+    option transparency_dark '0.3'
+    option mode 'normal'
+    option online_wallpaper 'none'
+CONF
+exit 0
+EOF
+
 #手动调整的插件
 if [ -n "$WRT_PACKAGE" ]; then
 	echo -e "$WRT_PACKAGE" >> ./.config
